@@ -102,6 +102,7 @@ function askToPickRole() {
                     const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
                     // console.log(engineer);
                     employees.push(engineer);
+                    console.log(employees);
                     askToPickRole();
                  }); 
 
@@ -110,21 +111,22 @@ function askToPickRole() {
                 inquirer.prompt(questionsIntern).then(function (internAnswers) {
                     const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school);
                     // console.log(intern);
-                    employee.push(intern);
+                    employees.push(intern);
+                    console.log(intern);
                     askToPickRole();
                 })
             } else {
                 // exit inquirer
                 // render html
                 // write info to html
-                // const html = render(employees);
+                const html = render(employees);
 
-                // fs.writeFile(outputPath, html, function(err) {
-                //     if(err)
-                //     throw err;
+                fs.writeFile(outputPath, html, function(err) {
+                    if(err)
+                    throw err;
 
-                console.log("\n=================================================\n You have successfully built your team's profiles!\n=================================================\n");
-                // });
+                console.log("\n===============================================\n You have successfully built your team profile!\n===============================================\n");
+                });
                 }; 
             }) 
         }  
