@@ -10,7 +10,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-
 // Write code to use inquirer to gather information about the development team members,
 
 const questionsManager = [{
@@ -49,44 +48,76 @@ const questionsEngineer = [{
     message: "Whats your engineer's Github user?",
 }];
 
+const questionsIntern = [{
+    type: "input",
+    name: "internName",
+    message: "What's your intern's name?"
+}, {
+    type: "input",
+    name: "internId",
+    message: "What is your intern's ID number?",
+}, {
+    type: "input",
+    name: "internEmail",
+    message: "What's your intern's email address?"
+}, {
+    type: "input",
+    name: "internSchool",
+    message: "Whats your intern's school name?",
+}];
+
 // and to create objects for each team member (using the correct classes as blueprints!)
-console.log("Please enter information to build your team!\n =======================");
+
+console.log("\n=============================================\n Please enter information to build your team!\n=============================================\n");
+
 //Inquirer Prompt #1
-inquirer.prompt (questionsManager).then(function(managerAnswers){
+inquirer.prompt(questionsManager).then(function(managerAnswers){
         const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber);
-        employees.push(manager);
+        // employees.push(manager);
         //Inquirer Prompt #2 ((wrap this in a function to repeat))
-        inquirer.prompt ([
+        // function askWhichOne() {
+        inquirer.prompt(
             {
-            //Which type of team member would you like to add?
-            //Engineer, Intern, or no more employees
-            }
-        ]).then(function(typeAnswers) {
+                type: "list",
+                name: "whichOne",
+                message: "What type of employee would you like to add?",
+                choices: [
+                    "Engineer",
+                    "Intern",
+                    "I do not wish to add anymore employees"
+                        ]
+            })
+        //  }
+        .then(function(typeAnswers) {
             if(typeAnswers === "Engineer") {
-                //Inquirer Prompt #3.1 (engineer)
+                //Inquirer Prompt #3.v1 (engineer)
                 inquirer.prompt(questionsEngineer).then(function(engineerAnswers) {
                     const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
-                    employees.push(engineer);
-                    return;
-            }) } else if (typeAnswer === "Intern") {
-                //prompt for Intern questions
-                //.then function internAnswers
-                // new Intern
-                // push intern to employees
-            } else {
+                    // employees.push(engineer);
+                    // askWhichOne();
+            }) 
+            } else if (typeAnswers === "Intern") {
+                // Inquirer Prompt #3.v2 (intern)
+                inquirer.prompt(questionsIntern).then(function (internAnswers) {
+                    const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school);
+                    // employee.push(intern);
+                    // askWhichOne();
+                })}
+             else {
                 // exit inquirer
                 // render html
                 // write info to html
-                const html = render(employees);
+                // const html = render(employees);
 
-                fs.writeFile(outputPath, html, function(err) {
-                    if(err)
-                    throw err;
-                console.log("Success!");
-                })
-            }
+                // fs.writeFile(outputPath, html, function(err) {
+                //     if(err)
+                //     throw err;
+                console.log("=======================\n You have successfully built your team's profiles!\n =======================");
+                // });
+            }; 
             
     })
+})
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
