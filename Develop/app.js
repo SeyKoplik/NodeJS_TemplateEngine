@@ -15,7 +15,7 @@ const render = require("./lib/htmlRenderer");
 const questionsManager = [{
     type: "input",
     name: "name",
-    message: "What's your manager's name?"
+    message: "What is your manager's name?"
 }, {
     type: "input",
     name: "id",
@@ -23,17 +23,17 @@ const questionsManager = [{
 }, {
     type: "input",
     name: "email",
-    message: "What's your manager's email address?"
+    message: "What is your manager's email address?"
 }, {
     type: "input",
     name: "officeNumber",
-    message: "Whats your manager's office number?",
+    message: "What is your manager's office number?",
 }];
 
 const questionsEngineer = [{
     type: "input",
     name: "name",
-    message: "What's your engineer's name?"
+    message: "What is your engineer's name?"
 }, {
     type: "input",
     name: "id",
@@ -41,17 +41,17 @@ const questionsEngineer = [{
 }, {
     type: "input",
     name: "email",
-    message: "What's your engineer's email address?"
+    message: "What is your engineer's email address?"
 }, {
     type: "input",
     name: "github",
-    message: "Whats your engineer's Github user?",
+    message: "What is your engineer's Github user?",
 }];
 
 const questionsIntern = [{
     type: "input",
     name: "name",
-    message: "What's your intern's name?"
+    message: "What is your intern's name?"
 }, {
     type: "input",
     name: "id",
@@ -59,11 +59,11 @@ const questionsIntern = [{
 }, {
     type: "input",
     name: "email",
-    message: "What's your intern's email address?"
+    message: "What is your intern's email address?"
 }, {
     type: "input",
     name: "school",
-    message: "Whats your intern's school name?",
+    message: "What is your intern's school name?",
 }];
 
 const questionsPickOne = [{
@@ -73,10 +73,11 @@ const questionsPickOne = [{
     choices: [
         "Engineer",
         "Intern",
-        "No more employees to add!"
+        "All done! No more to add."
         ]
 }];
 
+const employees = [];
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 console.log("\n=============================================\n Please enter information to build your team!\n=============================================\n");
@@ -85,7 +86,8 @@ console.log("\n=============================================\n Please enter info
 inquirer.prompt(questionsManager).then(function(managerAnswers) {
         const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber);
         // console.log(manager);
-        manager.push(employees);
+        employees.push(manager);
+        // console.log(employees);
         askToPickRole();
     });
 
@@ -98,8 +100,8 @@ function askToPickRole() {
                 //Inquirer Prompt #3.v1 (engineer)
                 inquirer.prompt(questionsEngineer).then(function(engineerAnswers) {
                     const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
-                    console.log(engineer);
-                    // employees.push(engineer);
+                    // console.log(engineer);
+                    employees.push(engineer);
                     askToPickRole();
                  }); 
 
@@ -107,8 +109,8 @@ function askToPickRole() {
                 // Inquirer Prompt #3.v2 (intern)
                 inquirer.prompt(questionsIntern).then(function (internAnswers) {
                     const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school);
-                    console.log(intern);
-                    // employee.push(intern);
+                    // console.log(intern);
+                    employee.push(intern);
                     askToPickRole();
                 })
             } else {
@@ -120,7 +122,8 @@ function askToPickRole() {
                 // fs.writeFile(outputPath, html, function(err) {
                 //     if(err)
                 //     throw err;
-                console.log("=======================\n You have successfully built your team's profiles!\n =======================");
+
+                console.log("\n=================================================\n You have successfully built your team's profiles!\n=================================================\n");
                 // });
                 }; 
             }) 
