@@ -66,6 +66,17 @@ const questionsIntern = [{
     message: "Whats your intern's school name?",
 }];
 
+const questionsPickOne = [{
+    type: "list",
+    name: "whichOne",
+    message: "What type of employee would you like to add?",
+    choices: [
+        "Engineer",
+        "Intern",
+        "No more employees to add!"
+        ]
+    }];
+
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 console.log("\n=============================================\n Please enter information to build your team!\n=============================================\n");
@@ -75,19 +86,12 @@ inquirer.prompt(questionsManager).then(function(managerAnswers) {
         const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber);
         // console.log(manager);
         // employees.push(manager);
-        //Inquirer Prompt #2 ((wrap this in a function to repeat))
-        // function askWhichOne() {
-        inquirer.prompt([{
-                type: "list",
-                name: "whichOne",
-                message: "What type of employee would you like to add?",
-                choices: [
-                    "Engineer",
-                    "Intern",
-                    "No more employees to add!"
-                    ]
-                }])
-        //  }
+        doSomething();
+    });
+
+function doSomething() {
+        //Inquirer Prompt #2
+        inquirer.prompt(questionsPickOne)
         .then(function(typeAnswer) {
             // console.log(typeAnswer.whichOne);
             if (typeAnswer.whichOne === "Engineer") {
@@ -96,17 +100,18 @@ inquirer.prompt(questionsManager).then(function(managerAnswers) {
                     const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
                     console.log(engineer);
                     // employees.push(engineer);
-                    // askWhichOne();
-                 }) 
+                    doSomething();
+                 }); 
+
             } else if (typeAnswer.whichOne === "Intern") {
                 // Inquirer Prompt #3.v2 (intern)
                 inquirer.prompt(questionsIntern).then(function (internAnswers) {
                     const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school);
                     console.log(intern);
                     // employee.push(intern);
-                    // askWhichOne();
-                })}
-             else {
+                    doSomething();
+                })
+            } else {
                 // exit inquirer
                 // render html
                 // write info to html
@@ -117,9 +122,12 @@ inquirer.prompt(questionsManager).then(function(managerAnswers) {
                 //     throw err;
                 console.log("=======================\n You have successfully built your team's profiles!\n =======================");
                 // });
-            }; 
-        })    
-    })
+                }; 
+            }) 
+        }  
+
+
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
