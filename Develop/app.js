@@ -12,18 +12,50 @@ const render = require("./lib/htmlRenderer");
 
 
 // Write code to use inquirer to gather information about the development team members,
+
+const questionsManager = [{
+    type: "input",
+    name: "managerName",
+    message: "What's your manager's name?"
+}, {
+    type: "input",
+    name: "managerId",
+    message: "What is your manager's ID number?",
+}, {
+    type: "input",
+    name: "managerEmail",
+    message: "What's your manager's email address?"
+}, {
+    type: "input",
+    name: "managerOfficeNumber",
+    message: "Whats your manager's office number?",
+}];
+
+const questionsEngineer = [{
+    type: "input",
+    name: "engineerName",
+    message: "What's your engineer's name?"
+}, {
+    type: "input",
+    name: "engineerId",
+    message: "What is your engineers's ID number?",
+}, {
+    type: "input",
+    name: "engineerEmail",
+    message: "What's your engineer's email address?"
+}, {
+    type: "input",
+    name: "engineerGithub",
+    message: "Whats your engineer's Github user?",
+}];
+
 // and to create objects for each team member (using the correct classes as blueprints!)
 console.log("Please enter information to build your team!\n =======================");
 //Inquirer Prompt #1
-inquirer.prompt ([
-    {
-        //Manager Questions
-        // Name, ID, Email, Office Number
-    }
-    ]).then(function(managerAnswers){
+inquirer.prompt (questionsManager).then(function(managerAnswers){
         const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber);
         employees.push(manager);
-        //Inquirer Prompt #2
+        //Inquirer Prompt #2 ((wrap this in a function to repeat))
         inquirer.prompt ([
             {
             //Which type of team member would you like to add?
@@ -31,12 +63,11 @@ inquirer.prompt ([
             }
         ]).then(function(typeAnswers) {
             if(typeAnswers === "Engineer") {
-                //Engineer Questions
-                inquirer.prompt ([{
-                }]).then(function(engineerAnswers){
-            const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
-            employees.push(engineer);
-            return;
+                //Inquirer Prompt #3.1 (engineer)
+                inquirer.prompt(questionsEngineer).then(function(engineerAnswers) {
+                    const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
+                    employees.push(engineer);
+                    return;
             }) } else if (typeAnswer === "Intern") {
                 //prompt for Intern questions
                 //.then function internAnswers
