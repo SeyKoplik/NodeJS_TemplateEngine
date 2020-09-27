@@ -75,7 +75,7 @@ const questionsPickOne = [{
         "Intern",
         "No more employees to add!"
         ]
-    }];
+}];
 
 // and to create objects for each team member (using the correct classes as blueprints!)
 
@@ -85,11 +85,11 @@ console.log("\n=============================================\n Please enter info
 inquirer.prompt(questionsManager).then(function(managerAnswers) {
         const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber);
         // console.log(manager);
-        // employees.push(manager);
-        doSomething();
+        manager.push(employees);
+        askToPickRole();
     });
 
-function doSomething() {
+function askToPickRole() {
         //Inquirer Prompt #2
         inquirer.prompt(questionsPickOne)
         .then(function(typeAnswer) {
@@ -100,7 +100,7 @@ function doSomething() {
                     const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
                     console.log(engineer);
                     // employees.push(engineer);
-                    doSomething();
+                    askToPickRole();
                  }); 
 
             } else if (typeAnswer.whichOne === "Intern") {
@@ -109,7 +109,7 @@ function doSomething() {
                     const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school);
                     console.log(intern);
                     // employee.push(intern);
-                    doSomething();
+                    askToPickRole();
                 })
             } else {
                 // exit inquirer
