@@ -20,6 +20,10 @@ const questionsManager = [{
     type: "input",
     name: "id",
     message: "What is your manager's ID number?",
+    validate: function(value) {
+        let num = !isNaN(parseInt(value));
+        return num || "Please enter valid ID number";
+        }
 }, {
     type: "input",
     name: "email",
@@ -28,6 +32,10 @@ const questionsManager = [{
     type: "input",
     name: "officeNumber",
     message: "What is your manager's office number?",
+    validate: function(value) {
+        if (!isNaN(parseInt(value)) && value.length >= 7) {return true;
+         } else {return "Invalid entry. Please enter 7-digit phone number.";}
+        }
 }];
 
 const questionsEngineer = [{
@@ -38,6 +46,10 @@ const questionsEngineer = [{
     type: "input",
     name: "id",
     message: "What is your engineers's ID number?",
+    validate: function(value) {
+        let num = !isNaN(parseInt(value));
+        return num || "Please enter valid ID number"; 
+        }
 }, {
     type: "input",
     name: "email",
@@ -56,6 +68,10 @@ const questionsIntern = [{
     type: "input",
     name: "id",
     message: "What is your intern's ID number?",
+    validate: function(value) {
+        let num = !isNaN(parseInt(value));
+        return num || "Please enter valid ID number";
+    }
 }, {
     type: "input",
     name: "email",
