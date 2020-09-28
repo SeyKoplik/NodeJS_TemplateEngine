@@ -17,9 +17,9 @@ const questionsManager = [{
     name: "name",
     message: "What is your manager's name?",
     validate: function(value) {
-        if (isNaN(value) && value.length > 1) {
+        if (isNaN(value) && value.length > 1 && value !== null && value !== " ") {
             return true;
-        } else {return "Please enter a valid input"}
+        } else {return "Please enter a valid input"} 
     }
 }, {
     type: "input",
@@ -54,7 +54,7 @@ const questionsEngineer = [{
     name: "name",
     message: "What is your engineer's name?",
     validate: function(value) {
-        if (isNaN(value) && value.length > 1) {
+        if (isNaN(value) && value.length > 1 && value !== null && value !== " ") {
             return true;
         } else {return "Please enter a valid input"} 
     }
@@ -87,7 +87,7 @@ const questionsIntern = [{
     name: "name",
     message: "What is your intern's name?",
     validate: function(value) {
-        if (isNaN(value) && value.length > 1) {
+        if (isNaN(value) && value.length > 1 && value !== null && value !== " ") {
             return true;
         } else {return "Please enter a valid input"} 
     }
