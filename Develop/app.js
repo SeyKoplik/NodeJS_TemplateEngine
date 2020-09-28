@@ -15,7 +15,12 @@ const render = require("./lib/htmlRenderer");
 const questionsManager = [{
     type: "input",
     name: "name",
-    message: "What is your manager's name?"
+    message: "What is your manager's name?",
+    validate: function(value) {
+        if (isNaN(value) && value.length > 1) {
+            return true;
+        } else {return "Please enter a valid input"}
+    }
 }, {
     type: "input",
     name: "id",
@@ -41,7 +46,12 @@ const questionsManager = [{
 const questionsEngineer = [{
     type: "input",
     name: "name",
-    message: "What is your engineer's name?"
+    message: "What is your engineer's name?",
+    validate: function(value) {
+        if (isNaN(value) && value.length > 1) {
+            return true;
+        } else {return "Please enter a valid input"} 
+    }
 }, {
     type: "input",
     name: "id",
@@ -63,7 +73,12 @@ const questionsEngineer = [{
 const questionsIntern = [{
     type: "input",
     name: "name",
-    message: "What is your intern's name?"
+    message: "What is your intern's name?",
+    validate: function(value) {
+        if (isNaN(value) && value.length > 1) {
+            return true;
+        } else {return "Please enter a valid input"} 
+    }
 }, {
     type: "input",
     name: "id",
