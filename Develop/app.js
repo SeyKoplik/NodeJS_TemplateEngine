@@ -12,6 +12,8 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 
+// and to create objects for each team member (using the correct classes as blueprints!)
+
 const questionsManager = [{
     type: "input",
     name: "name",
@@ -115,6 +117,7 @@ const questionsIntern = [{
     message: "What is your intern's school name?",
 }];
 
+// to use for inquirer.prompt to ask which type of employee
 const questionsPickOne = [{
     type: "list",
     name: "whichOne",
@@ -125,18 +128,18 @@ const questionsPickOne = [{
         "All done! No more to add."
         ]
 }];
-
+// create empty array to define the employees array to store objects of information created
 const employees = [];
-// and to create objects for each team member (using the correct classes as blueprints!)
 
 console.log("\n=============================================\n Please enter information to build your team!\n=============================================\n");
 
 //Inquirer Prompt #1
 inquirer.prompt(questionsManager).then(function(managerAnswers) {
+        // create variable to store new manager object information
         const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber);
-        // console.log(manager);
+        // push the manager object into employee array
         employees.push(manager);
-        // console.log(employees);
+        // begin asking question of which type of employee to add
         askToPickRole();
     });
 
@@ -148,20 +151,22 @@ function askToPickRole() {
             if (typeAnswer.whichOne === "Engineer") {
                 //Inquirer Prompt #3.v1 (engineer)
                 inquirer.prompt(questionsEngineer).then(function(engineerAnswers) {
+                    // create variable to build new Engineer object information with
                     const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
-                    // console.log(engineer);
+                    // push the engineer object into the employees array
                     employees.push(engineer);
-                    // console.log(employees);
+                    // start question asking all over again
                     askToPickRole();
                  }); 
 
             } else if (typeAnswer.whichOne === "Intern") {
                 // Inquirer Prompt #3.v2 (intern)
                 inquirer.prompt(questionsIntern).then(function (internAnswers) {
+                    // create variable to build new Intern object with info
                     const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school);
-                    // console.log(intern);
+                    // push the intern object into the employees array
                     employees.push(intern);
-                    // console.log(intern);
+                    // start question asking all over again
                     askToPickRole();
                 })
             } else {
