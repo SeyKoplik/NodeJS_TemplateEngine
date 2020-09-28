@@ -32,7 +32,13 @@ const questionsManager = [{
 }, {
     type: "input",
     name: "email",
-    message: "What is your manager's email address?"
+    message: "What is your manager's email address?",
+    validate: function(value) {
+        var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        if(mailformat.test(value)){
+            return true;
+        } else { return "Please enter valid email address!"}
+        }
 }, {
     type: "input",
     name: "officeNumber",
@@ -63,7 +69,13 @@ const questionsEngineer = [{
 }, {
     type: "input",
     name: "email",
-    message: "What is your engineer's email address?"
+    message: "What is your engineer's email address?",
+    validate: function(value) {
+        var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        if(mailformat.test(value)){
+            return true;
+        } else { return "Please enter valid email address!"}
+        }
 }, {
     type: "input",
     name: "github",
@@ -90,7 +102,13 @@ const questionsIntern = [{
 }, {
     type: "input",
     name: "email",
-    message: "What is your intern's email address?"
+    message: "What is your intern's email address?",
+    validate: function(value) {
+        var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        if(mailformat.test(value)){
+            return true;
+        } else { return "Please enter valid email address!"}
+        }
 }, {
     type: "input",
     name: "school",
