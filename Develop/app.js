@@ -102,7 +102,7 @@ function askToPickRole() {
                     const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
                     // console.log(engineer);
                     employees.push(engineer);
-                    console.log(employees);
+                    // console.log(employees);
                     askToPickRole();
                  }); 
 
@@ -112,7 +112,7 @@ function askToPickRole() {
                     const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school);
                     // console.log(intern);
                     employees.push(intern);
-                    console.log(intern);
+                    // console.log(intern);
                     askToPickRole();
                 })
             } else {
