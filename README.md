@@ -10,8 +10,7 @@ In the CLI, user will be asked certain questions that need an input about employ
 
 
 ## Screenshots
-<iframe src="https://drive.google.com/file/d/1YeqKTOBJfSeS6SL-A7onDaT6RrBz4F61/preview" width="240" height="180"></iframe>
-<br>
+
 <img src="./Assets/runtest.png" width="50%">
 <br>
 <img src="./Assets/teamenginecli.png" width="50%">
